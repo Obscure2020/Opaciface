@@ -10,6 +10,7 @@ Opaciface is a stack-based (sort-of) esoteric programming language designed to a
 1. [Hiding Programs in English Text](#hiding-programs-in-english-text)
     - [Sentences](#sentences)
     - [Commas](#commas)
+    - [Consonants and Vowels](#consonants-and-vowels)
 1. Opcode Reference
 
 ## Memory and Data Types
@@ -56,4 +57,18 @@ Besides periods, exclamation points, and question marks, there is only one other
 
 - #### What if I want a sentence to begin in word-ignoring mode?
     You're in luck. There is a small set of words you can use to begin a sentence that will initiate word-ignoring mode right at the beginning of the sentence. All sentences that begin with the following words will begin in word-ignoring mode (until taken out of word-ignoring mode by a comma):
-  - `But`, `Too`, `For`, `If`, and `As`.
+  - `But`, `Too`, `For`, `If`, and `As`
+
+### Consonants and Vowels
+After figuring out what sentences to interpret and tossing out the words marked for ignorance, each word that remains is interpreted one-by-one, in written order. The first thing Opaciface does to a word is reduce it to its first three consonants. All vowels and non-letters are ignored, and letter repetition is allowed. The three-consonant groups resulting from this process form the opcodes for all instructions in Opaciface.
+
+For clarity, here are a few examples of words and their reduced form:
+- `natural` 🠖 `ntr`
+- `entirely` 🠖 `ntr`
+- `eating` 🠖 `tng`
+- `tangentially` 🠖 `tng`
+- `ballast` 🠖 `bll`
+- `eyeball` 🠖 `bll`
+  - Consonants are defined as all letters which are not vowels. Vowels are defined in Opaciface as `a`, `e`, `i`, `o`, `u`, and `y`.
+
+It should be noted that the words in a sentence are consonant-reduced one at a time, and not all at once, for a good reason: some opcodes may modify the way the words that follow it are treated.
